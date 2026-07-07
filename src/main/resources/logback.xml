@@ -1,0 +1,34 @@
+<configuration>
+    <file>
+        JournalApp.log
+    </file>
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+<!--    <appender name="FileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>logs/journal-app.log</file>-->
+
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            <fileNamePattern>logs/archived/journal-app-%d{yyyy-MM-dd_HH-mm}.%i.log</fileNamePattern>-->
+<!--            <maxFileSize>10MB</maxFileSize>-->
+<!--            <maxHistory>30</maxHistory>-->
+<!--            <totalSizeCap>1GB</totalSizeCap>-->
+<!--        </rollingPolicy>-->
+
+<!--        <encoder>-->
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+<!--        </encoder>-->
+
+<!--    </appender>-->
+
+    <logger name="com.debayan.JournalApp" level="DEBUG" />
+
+    <root level="INFO">
+        <appender-ref ref="ConsoleAppender" />
+
+<!--        <appender-ref ref="FileAppender" />-->
+    </root>
+
+</configuration>

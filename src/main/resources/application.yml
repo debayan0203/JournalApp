@@ -1,0 +1,32 @@
+#spring.application.name=JournalApp
+
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+    mongodb:
+      uri: mongodb+srv://ronystars670_db_user:Jtq3BGMAuWNVvVDm@cluster0.vpk8dnb.mongodb.net/journaldb?retryWrites=true&w=majority
+      database: journaldb
+      auto-index-creation: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: debayanhere2005@gmail.com
+    password: soxchssdmzfiwlqy
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+server:
+  port: 8080
+  servlet:
+    context-path: /journal
+
+#
+weather.api.key: 581169a0bf641425f07e7b0a8d4a8c8c
