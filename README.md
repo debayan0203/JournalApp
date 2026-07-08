@@ -57,11 +57,11 @@ sequenceDiagram
 
 The backend is live on Render! You can test it immediately using **Postman**, **Thunder Client**, or **[Hoppscotch.io](https://hopscotch.io/)**.
 
-> **⚠️ Note on Free Tier Hosting:** The cloud server sleeps after 15 minutes of inactivity. **The initial request may take ~45–60 seconds to wake the container up.** Subsequent requests will process instantly in `<1ms`!
+**The initial request may take ~45–60 seconds to wake the container up.** Subsequent requests will process instantly in `<1ms`!
 
 ### 1. Instant Health Check
 Verify the server is running by clicking this direct browser link:  
-👉 **[https://journalapp-kuw2.onrender.com/journal/public/health-check](https://journalapp-kuw2.onrender.com/journal/public/health-check)** *(Returns `"Ok"` when the server is active).*
+👉 **[https://journalapp-kuw2.onrender.com/public/health-check](https://journalapp-kuw2.onrender.com/journal/public/health-check)** *(Returns `"Ok"` when the server is active).*
 
 ---
 
