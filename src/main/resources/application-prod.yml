@@ -5,7 +5,7 @@ spring:
     name: JournalApp
   data:
     mongodb:
-      uri: mongodb+srv://ronystars670_db_user:Jtq3BGMAuWNVvVDm@cluster0.vpk8dnb.mongodb.net/journaldb?retryWrites=true&w=majority
+      uri: mongodb+srv://ronystars670_db_user:xxxxxx@cluster0.vpk8dnb.mongodb.net/journaldb?retryWrites=true&w=majority
       
       database: journaldb
       
