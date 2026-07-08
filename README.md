@@ -61,28 +61,45 @@ The backend is live on Render! You can test it immediately using **Postman**, **
 
 ### 1. Instant Health Check
 Verify the server is running by clicking this direct browser link:  
-👉 **[https://journalapp-kuw2.onrender.com/public/health-check](https://journalapp-kuw2.onrender.com/journal/public/health-check)** *(Returns `"Ok"` when the server is active).*
+👉 **[https://journalapp-kuw2.onrender.com/public/health-check](https://journalapp-kuw2.onrender.com/public/health-check)** *(Returns `"Ok"` when the server is active).*
 
 ---
-
 ## 🔌 API Endpoints Reference
+
+All API endpoints are relative to the base server URL (`http://localhost:8080` or `https://journalapp-kuw2.onrender.com`). 
+Protected routes require a valid JSON Web Token passed in the HTTP request headers:  
+`Authorization: Bearer <your_jwt_token>`
 
 ### Public Endpoints (No Authentication Required)
 | Method | Endpoint | Description | Request Body |
 | :--- | :--- | :--- | :--- |
 | `GET` | `/public/health-check` | Returns server health status | None |
-| `POST` | `/public/signup` | Registers a new user account | `{ "userName", "password", "email" }` |
-| `POST` | `/public/login` | Authenticates user & returns JWT | `{ "userName", "password" }` |
+| `POST` | `/public/signup` | Registers a new user account | `{ "userName", "password", "email", "sentimentAnalysis" }` |
+| `POST` | `/public/login` | Authenticates user & returns raw JWT | `{ "userName", "password" }` |
+| `POST` | `/public/logout` | Blacklists active token in Redis (Revokes session) | None (Requires Token Header) |
 
-### Protected Endpoints (Requires `Authorization: Bearer <JWT>` Header)
+### User Account & Weather Endpoints (Requires `USER` Role)
 | Method | Endpoint | Description | Request Body |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/journal/user` | Fetches all journal entries for logged-in user | None |
-| `POST` | `/journal/user` | Creates a new journal entry | `{ "title", "content" }` |
-| `DELETE`| `/journal/user/{id}` | Deletes a specific journal entry | None |
-| `POST` | `/public/logout` | Blacklists active token in Redis (Revokes session) | None |
+| `GET` | `/user/greeting` | Returns user greeting with live Mumbai weather | None |
+| `PUT` | `/user` | Updates username and password of authenticated user | `{ "userName", "password" }` |
+| `DELETE` | `/user` | Deletes authenticated user account from database | None |
 
----
+### Journal Entry Management (Requires `USER` Role)
+| Method | Endpoint | Description | Request Body |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/journal` | Fetches all journal entries for logged-in user | None |
+| `POST` | `/journal` | Creates a new journal entry with sentiment analysis | `{ "title", "content" }` |
+| `GET` | `/journal/id/{myId}` | Fetches a specific journal entry by its ObjectId | None |
+| `PUT` | `/journal/id/{myId}` | Updates title and content of an existing entry | `{ "title", "content" }` |
+| `DELETE`| `/journal/id/{myId}` | Deletes entry atomically and unlinks from user | None |
+
+### Administration Endpoints (Requires `ADMIN` Role)
+| Method | Endpoint | Description | Request Body |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/admin/all-users` | Fetches entire database list of registered users | None |
+| `POST` | `/admin/create-admin-user` | Creates a new privileged user with `ADMIN` authority | `{ "userName", "password", "email" }` |
+| `GET` | `/admin/clear` | Evicts and reloads in-memory RAM application cache | None |
 
 ## 💻 Local Development & Quickstart
 
