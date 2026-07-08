@@ -40,13 +40,3 @@ sequenceDiagram
     API->>Redis: Store Token with 1800s TTL (30-Min Expiry)
     Redis-->>API: Token Successfully Revoked
     API-->>Client: 200 OK (Logged out successfully)
-
-
-    ✨ Key Technical Features
-Stateless JWT Authentication: Implements custom OncePerRequestFilter filters for cryptographic HMAC-SHA256 token verification in RAM without database hits.
-
-O(1) Token Revocation: Uses a cloud-hosted Redis Key-Value store to blacklist revoked tokens with an automated 30-minute Time-To-Live (TTL) expiration matching token lifespan.
-
-Database Optimization: Optimized MongoDB read latency from ~30ms down to <1ms for repeated session checks and user data fetching.
-
-Cloud DevOps & Containerization: Built using an optimized multi-stage Dockerfile to strip build tools and minimize runtime container size, deployed via continuous CI/CD pipelines to Render.
