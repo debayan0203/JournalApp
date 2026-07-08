@@ -56,13 +56,13 @@ public class JwtUtil {
                 .header().empty().add("typ", "JWT")
                 .and()
                 .issuedAt(new Date(System.currentTimeMillis()))
-                // ✅ CLEAN MATH: 1000 ms * 60 seconds * 30 = exactly 30 minutes!
+                //1000 ms * 60 seconds * 30 = exactly 30 minutes!
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
                 .signWith(getSigningKey())
                 .compact();
     }
 
-    // ✅ ENTERPRISE UPGRADE: Validates both token expiration AND username matching!
+    //Validates both token expiration AND username matching!
     public Boolean validateToken(String token, String username) {
         final String extractedUsername = extractUsername(token);
         return (extractedUsername.equals(username) && !isTokenExpired(token));
