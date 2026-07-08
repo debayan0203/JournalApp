@@ -6,7 +6,7 @@ spring:
       host: localhost
       port: 6379
     mongodb:
-      uri: mongodb+srv://ronystars670_db_user:Jtq3BGMAuWNVvVDm@cluster0.vpk8dnb.mongodb.net/journaldb?retryWrites=true&w=majority
+      uri: mongodb+srv://ronystars670_db_user:xxxxx@cluster0.vpk8dnb.mongodb.net/journaldb?retryWrites=true&w=majority
       database: journaldb
       auto-index-creation: true
 
