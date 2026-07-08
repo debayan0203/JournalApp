@@ -14,6 +14,10 @@ public class EmailService {
 private JavaMailSender javaMailSender;
 
     public void sendEmail(String to, String subject, String body){
+       if (javaMailSender == null) {
+        System.out.println("Mail server not configured. Skipping email to: " + to);
+        return; 
+    }
         try{
             SimpleMailMessage mail=new SimpleMailMessage();
             mail.setTo(to);
