@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+   @Autowired(required = false)
+private JavaMailSender javaMailSender;
 
     public void sendEmail(String to, String subject, String body){
         try{
