@@ -25,11 +25,6 @@ public class UserEntryController {
     @Autowired
     private WeatherService weatherService;
 
-    @GetMapping
-    public List<User> getAllUsers(){
-        return userService.getAll();
-    }
-
     @PutMapping
     public ResponseEntity<?>  updateUser(@RequestBody User user){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -43,7 +38,7 @@ public class UserEntryController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @DeleteMapping("/user")
+    @DeleteMapping
     public ResponseEntity<?> deleteUserById(){
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         userRepository.deleteByUserName(authentication.getName());
